@@ -128,14 +128,16 @@ void UAuraAbilitySystemLibrary::SetIsCriticalHit(FGameplayEffectContextHandle& E
 	}
 }
 
-void UAuraAbilitySystemLibrary::GetLivePlayersWithinRadius(const UObject* WorldContextObject, TArray<AActor*>& OutOverlappingActors, const TArray<AActor*>& ActorsToIgnore, float Radius, const FVector& SphereOrigin)
+void UAuraAbilitySystemLibrary::GetLivePlayersWithinRadius(const UObject* WorldContextObject,
+	TArray<AActor*>& OutOverlappingActors, const TArray<AActor*>& ActorsToIgnore, float Radius,
+	const FVector& SphereOrigin)
 {
 	FCollisionQueryParams SphereParams;
 	SphereParams.AddIgnoredActors(ActorsToIgnore);
 
-	TArray<FOverlapResult> Overlaps;
-	if(const UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::LogAndReturnNull))
+	if (const UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject, EGetWorldErrorMode::LogAndReturnNull))
 	{
+		TArray<FOverlapResult> Overlaps;
 		World->OverlapMultiByObjectType(Overlaps, SphereOrigin, FQuat::Identity, FCollisionObjectQueryParams(FCollisionObjectQueryParams::InitType::AllDynamicObjects), FCollisionShape::MakeSphere(Radius), SphereParams);
 		for (FOverlapResult& Overlap : Overlaps)
 		{

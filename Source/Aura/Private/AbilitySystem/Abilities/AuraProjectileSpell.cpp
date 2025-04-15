@@ -19,7 +19,7 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocati
 	const bool bIsServer = GetAvatarActorFromActorInfo()->HasAuthority();
 	if (!bIsServer) return;
 
-	const FVector SocketLocation = ICombatInterface::Execute_GetCombatSocketLocation(GetAvatarActorFromActorInfo());
+	const FVector SocketLocation = ICombatInterface::Execute_GetCombatSocketLocation(GetAvatarActorFromActorInfo(), FAuraGameplayTags::Get().Montage_Attack_Weapon);
 	FRotator Rotation = (ProjectileTargetLocation - SocketLocation).Rotation();
 
 	FTransform SpawnTransform;
@@ -41,7 +41,7 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocati
 
 	const FGameplayEffectSpecHandle SpecHandle = SourceASC->MakeOutgoingSpec(DamageEffectClass, GetAbilityLevel(), EffectContextHandle);
 
-	FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
+	const FAuraGameplayTags GameplayTags = FAuraGameplayTags::Get();
 
 	for (auto& Pair : DamageType)
 	{
@@ -52,5 +52,4 @@ void UAuraProjectileSpell::SpawnProjectile(const FVector& ProjectileTargetLocati
 	Projectile->DamageEffectSpecHandle = SpecHandle;
 
 	Projectile->FinishSpawning(SpawnTransform);
-
 }
