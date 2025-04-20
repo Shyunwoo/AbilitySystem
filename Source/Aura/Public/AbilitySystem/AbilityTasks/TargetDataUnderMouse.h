@@ -24,8 +24,9 @@ public:
 	FMouseTargetDataSignature ValidData;
 
 private:
+
 	virtual void Activate() override;
-	void SendMouseSursorData();
+	void SendMouseCursorData();
 
 	void OnTargetDataReplicatedCallback(const FGameplayAbilityTargetDataHandle& DataHandle, FGameplayTag ActivationTag);
 };

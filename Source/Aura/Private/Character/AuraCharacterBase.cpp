@@ -58,7 +58,7 @@ void AAuraCharacterBase::MulticastHandleDeath_Implementation()
 void AAuraCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 FVector AAuraCharacterBase::GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag)

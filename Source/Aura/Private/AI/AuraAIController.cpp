@@ -9,6 +9,6 @@ AAuraAIController::AAuraAIController()
 {
 	Blackboard = CreateDefaultSubobject<UBlackboardComponent>("BlackboardComponent");
 	check(Blackboard);
-	BehaviorTreeComponent = CreateDefaultSubobject<UBehaviorTreeComponent>("CreateDefaultSubobject");
+	BehaviorTreeComponent = CreateDefaultSubobject<UBehaviorTreeComponent>("BehaviorTreeComponent");
 	check(BehaviorTreeComponent);
 }
